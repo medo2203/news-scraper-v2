@@ -1,0 +1,17 @@
+# Network and HTTP requests
+requests>=2.25.0
+
+# XML parsing
+beautifulsoup4>=4.9.3
+
+# Message queue
+pika>=1.2.0
+
+# Redis client
+redis>=4.0.0
+
+# Environment variables
+python-dotenv>=0.19.0
+
+dotenv
+
