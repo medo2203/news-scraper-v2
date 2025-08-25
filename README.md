@@ -32,12 +32,14 @@ A unified RSS feed scraper that intelligently processes news articles from vario
 ## Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/medo2203/news-scraper-v2.git
    cd news-scraper-v2
    ```
 
 2. **Install dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -54,11 +56,13 @@ A unified RSS feed scraper that intelligently processes news articles from vario
 Before scraping, you need to configure news sites in the database:
 
 #### Initialize Database
+
 ```bash
 python src/setup_site_configs.py setup
 ```
 
 #### Add a New Site Configuration
+
 ```bash
 python src/setup_site_configs.py add \
   --name "Example News" \
@@ -71,11 +75,13 @@ python src/setup_site_configs.py add \
 ```
 
 #### List All Configured Sites
+
 ```bash
 python src/setup_site_configs.py list
 ```
 
 #### Export Site Configuration
+
 ```bash
 python src/setup_site_configs.py export "Example News"
 ```
@@ -83,16 +89,19 @@ python src/setup_site_configs.py export "Example News"
 ### Scraping RSS Feeds
 
 #### Basic Scraping (Auto-detect site configuration)
+
 ```bash
 python src/unified_rss_scraper.py "https://example.com/rss"
 ```
 
 #### Scraping with Specific Site Configuration
+
 ```bash
 python src/unified_rss_scraper.py "https://example.com/rss" --site "Example News"
 ```
 
 #### Override Default Settings
+
 ```bash
 python src/unified_rss_scraper.py "https://example.com/rss" \
   --language "fr" \
@@ -103,11 +112,13 @@ python src/unified_rss_scraper.py "https://example.com/rss" \
 ### Managing Articles
 
 #### View Recent Articles
+
 ```bash
 python src/setup_site_configs.py articles
 ```
 
 #### Filter by Source
+
 ```bash
 python src/setup_site_configs.py articles --source "Example News" --limit 20
 ```
@@ -118,28 +129,29 @@ python src/setup_site_configs.py articles --source "Example News" --limit 20
 
 The database stores the following configuration for each news site:
 
-| Field | Description | Default |
-|-------|-------------|---------|
-| `site_name` | Unique identifier for the site | Required |
-| `url_pattern` | URL pattern for auto-detection | Required |
-| `default_language` | Default language code | 'fr' |
-| `default_categories` | JSON array of default categories | '[]' |
-| `default_countries` | JSON array of default countries | '[]' |
-| `title_field` | RSS field for article title | 'title' |
-| `link_field` | RSS field for article link | 'link' |
-| `date_field` | RSS field for publication date | 'pubDate' |
-| `description_field` | RSS field for description | 'description' |
-| `author_field` | RSS field for author | null |
-| `keywords_field` | RSS field for keywords/tags | null |
-| `image_field` | RSS field for image URL | null |
-| `media_namespace` | Namespace for media content | null |
-| `media_content_field` | Field name for media content | null |
-| `fetch_article_image` | Whether to fetch images from article pages | false |
-| `article_image_xpath` | XPath/CSS selector for article images | null |
+| Field                 | Description                                | Default       |
+| --------------------- | ------------------------------------------ | ------------- |
+| `site_name`           | Unique identifier for the site             | Required      |
+| `url_pattern`         | URL pattern for auto-detection             | Required      |
+| `default_language`    | Default language code                      | 'fr'          |
+| `default_categories`  | JSON array of default categories           | '[]'          |
+| `default_countries`   | JSON array of default countries            | '[]'          |
+| `title_field`         | RSS field for article title                | 'title'       |
+| `link_field`          | RSS field for article link                 | 'link'        |
+| `date_field`          | RSS field for publication date             | 'pubDate'     |
+| `description_field`   | RSS field for description                  | 'description' |
+| `author_field`        | RSS field for author                       | null          |
+| `keywords_field`      | RSS field for keywords/tags                | null          |
+| `image_field`         | RSS field for image URL                    | null          |
+| `media_namespace`     | Namespace for media content                | null          |
+| `media_content_field` | Field name for media content               | null          |
+| `fetch_article_image` | Whether to fetch images from article pages | false         |
+| `article_image_xpath` | XPath/CSS selector for article images      | null          |
 
 ### Database Schema
 
 #### Site Configurations Table
+
 ```sql
 CREATE TABLE site_configs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -163,6 +175,7 @@ CREATE TABLE site_configs (
 ```
 
 #### Articles Table
+
 ```sql
 CREATE TABLE articles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -233,8 +246,72 @@ python src/unified_rss_scraper.py "https://test.com/rss" --site "Test Site"
 
 ## License
 
-[Add your license information here]
+This project is licensed under the MIT License - see the [LICENSE](#license-text) section below for details.
+
+### License Text
+
+```
+MIT License
+
+Copyright (c) 2025 medo2203
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## Contributing
 
-[Add contribution guidelines here]
+This is a fun side project that I'm sharing with the community! 🎉
+
+While I don't expect much from this project, contributions are welcome if you find it useful or interesting. Here's how you can contribute:
+
+### Ways to Contribute
+
+- **🐛 Found a bug?** Open an issue and describe what went wrong
+- **💡 Have an idea?** Share it in the issues section
+- **🔧 Want to fix something?** Fork the repo and submit a pull request
+- **📖 Improve documentation?** Better explanations are always welcome
+- **🌟 Just want to star the repo?** That makes my day!
+
+### Getting Started
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/cool-new-thing`)
+3. Make your changes
+4. Test them out (even basic testing is fine!)
+5. Commit your changes (`git commit -am 'Add some cool feature'`)
+6. Push to the branch (`git push origin feature/cool-new-thing`)
+7. Create a Pull Request
+
+### What I'm Looking For
+
+- **Keep it simple**: This is meant to be a straightforward RSS scraper
+- **No pressure**: Don't worry about perfect code, we're all learning!
+- **Have fun**: If you're not enjoying it, you're doing it wrong 😄
+
+### Code Style
+
+There's no strict code style guide - just try to keep things readable and consistent with the existing code. If you're unsure about something, just ask!
+
+### Questions?
+
+Feel free to open an issue if you have any questions. I might not respond immediately (this is a side project after all), but I'll get back to you when I can.
+
+---
+
+**Remember**: This is just for fun! No expectations, no pressure, just sharing cool stuff with the community. 🚀
